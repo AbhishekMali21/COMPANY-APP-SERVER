@@ -31,6 +31,13 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	@Override
+	public List<Company> getCompanyById(Long id) {
+		ArrayList<Company> companyList = new ArrayList<Company>();
+		companyRepository.findById(id).ifPresent(companyList::add);
+		return companyList;
+	}
+	
+	@Override
 	public Company addCompany(Company company) throws ValidationException {
 		return companyRepository.save(company);
 	}

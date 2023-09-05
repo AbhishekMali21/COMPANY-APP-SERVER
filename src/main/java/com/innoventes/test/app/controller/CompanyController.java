@@ -54,6 +54,20 @@ public class CompanyController {
 		return ResponseEntity.status(HttpStatus.OK).location(location).body(companyDTOList);
 	}
 
+	@GetMapping("/company/{id}")
+	public ResponseEntity<List<CompanyDTO>> getCompanyById(@PathVariable Long id) {
+		List<Company> companyList = companyService.getCompanyById(id);
+		
+		List<CompanyDTO> companyDTOList = new ArrayList<>();
+		
+		for (Company entity : companyList) {
+			companyDTOList.add(companyMapper.getCompanyDTO(entity));
+		}
+
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
+		return ResponseEntity.status(HttpStatus.OK).location(location).body(companyDTOList);
+	}
+
 	@PostMapping("/companies")
 	public ResponseEntity<CompanyDTO> addCompany(@Valid @RequestBody CompanyDTO companyDTO)
 			throws ValidationException {
