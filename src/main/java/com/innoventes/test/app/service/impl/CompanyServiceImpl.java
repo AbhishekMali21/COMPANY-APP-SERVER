@@ -36,6 +36,13 @@ public class CompanyServiceImpl implements CompanyService {
 		companyRepository.findById(id).ifPresent(companyList::add);
 		return companyList;
 	}
+
+	@Override
+	public List<Company> getCompanyByCompanyCode(String companyCode) {
+		ArrayList<Company> companyList = new ArrayList<Company>();
+		companyRepository.findByCompanyCode(companyCode).ifPresent(companyList::add);
+		return companyList;
+	}
 	
 	@Override
 	public Company addCompany(Company company) throws ValidationException {
