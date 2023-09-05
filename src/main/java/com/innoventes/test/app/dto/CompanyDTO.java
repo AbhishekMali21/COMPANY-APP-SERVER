@@ -3,6 +3,7 @@ package com.innoventes.test.app.dto;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
@@ -36,4 +37,7 @@ public class CompanyDTO {
 	
 	@URL(message = "Website URL should be a valid URL")
 	private String webSiteURL;
+	
+	@Pattern(regexp = "[A-Za-z]{2}[0-9]{2}[e|E|n|N]")
+	private String companyCode;
 }
